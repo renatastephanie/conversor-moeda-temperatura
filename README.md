@@ -69,5 +69,5 @@ Este projeto foi desenvolvido por:
 
 ## Para visualizar o projeto, clique no link abaixo:
 
-[🔗Clique Aqui](https://renatastephanie.github.io/conversor-moeda-temperatura/)
+[🔗Clique Aqui](https://conversor-moeda-temperatura.vercel.app/)
 ---
