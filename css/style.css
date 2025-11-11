@@ -33,7 +33,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: var(--cor-fundo-claro);
+    color: var(--cor-texto);
     text-align: center;
     margin-top: 0;
 }
@@ -95,6 +95,7 @@ input[type="number"]:focus, select:focus {
 /* 4. BOTÃO DE CONVERSÃO */
 .botoes-conversao {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin: var(--margin-vertical) 0;
 }
@@ -120,6 +121,11 @@ input[type="number"]:focus, select:focus {
     transform: scale(0.98); /* Efeito de clique */
 }
 
+.botoes-conversao button:disabled {
+    background-color: var(--cor-secundaria);
+    cursor: not-allowed;
+}
+
 /* 5. RESULTADO COTAÇÃO */
 .resultado, .cotacao-extra {
     margin-top: var(--margin-vertical);
@@ -135,10 +141,21 @@ input[type="number"]:focus, select:focus {
 }
 
 .valor {
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
     color: var(--cor-fundo-claro); /* Cor de destaque para o valor */
     text-align: right;
     margin-top: 5px;
+    word-wrap: break-word;
+}
+
+/* ANIMAÇÃO DE CARREGAMENTO */
+@keyframes piscar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading-text {
+    animation: piscar 1.5s infinite;
 }
 
