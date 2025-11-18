@@ -21,6 +21,8 @@ const FASTFOREX_API_KEY = "c3ee243b19-7eb4abf772-t5xm97";
  */
 async function buscarTaxaCambio() {
     taxaCambioDisplay.textContent = 'Buscando...';
+    taxaCambioDisplay.classList.add('loading-text'); // Adiciona classe para feedback visual
+
     const API_URL = `https://api.fastforex.io/fetch-multi?from=USD&to=BRL&api_key=${FASTFOREX_API_KEY}`;
 
     try {
@@ -48,6 +50,8 @@ async function buscarTaxaCambio() {
         console.error("Erro na API:", error);
         taxaCambioDisplay.textContent = 'Erro ao carregar cotação.';
         taxaCambioBRL = 0; 
+    } finally {
+        taxaCambioDisplay.classList.remove('loading-text'); // Remove a classe ao finalizar
     }
 }
 
@@ -93,24 +97,26 @@ function converter(direcao) {
     }
 
     let resultado;
+    let descricao;
 
     if (modo === 'temperatura') {
         if (direcao === 'A') { // C° para F°
             resultado = celsiusParaFahrenheit(valor);
-            valorResultado.textContent = `${resultado.toFixed(2)} F°`;
+            descricao = `${valor}°C = ${resultado.toFixed(2)}°F`;
         } else { // F° para C°
             resultado = fahrenheitParaCelsius(valor);
-            valorResultado.textContent = `${resultado.toFixed(2)} C°`;
+            descricao = `${valor}°F = ${resultado.toFixed(2)}°C`;
         }
     } else { // modo === 'moeda'
         if (direcao === 'A') { // R$ para U$
             resultado = valor / taxaCambioBRL;
-            valorResultado.textContent = `U$ ${resultado.toFixed(2)}`;
+            descricao = `${valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} = ${resultado.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`;
         } else { // U$ para R$
             resultado = valor * taxaCambioBRL;
-            valorResultado.textContent = `R$ ${resultado.toFixed(2)}`;
+            descricao = `${valor.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} = ${resultado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
         }
     }
+    valorResultado.textContent = descricao;
 }
 
 // --- 3. LÓGICA DE ATUALIZAÇÃO DA INTERFACE (UI) ---
@@ -123,14 +129,17 @@ function atualizarUI() {
     
     valorResultado.textContent = 'Aguardando conversão...';
     valorEntrada.value = '';
+    validarEntrada(); // Valida para desabilitar/habilitar botões
 
     if (modo === 'temperatura') {
-        labelEntrada.textContent = 'Valor em Celsius (C°):'; // Padrão inicial
+        labelEntrada.textContent = 'Valor para converter:'; // Padrão inicial
+        valorEntrada.placeholder = 'Ex: 10';
         btnConverterA.textContent = 'C° para F°';
         btnConverterB.textContent = 'F° para C°';
         cotacaoInfo.style.display = 'none';
     } else {
-        labelEntrada.textContent = 'Valor em Real (R$):';
+        labelEntrada.textContent = 'Valor para converter:';
+        valorEntrada.placeholder = 'Ex: 50,00';
         btnConverterA.textContent = 'R$ para U$';
         btnConverterB.textContent = 'U$ para R$';
         cotacaoInfo.style.display = 'block';
@@ -141,6 +150,15 @@ function atualizarUI() {
             taxaCambioDisplay.textContent = `1 U$ = ${taxaCambioBRL.toFixed(4)} R$`;
         }
     }
+}
+
+/**
+ * Valida a entrada do usuário para habilitar/desabilitar os botões de conversão.
+ */
+function validarEntrada() {
+    const valorValido = valorEntrada.value.trim() !== '' && !isNaN(parseFloat(valorEntrada.value));
+    btnConverterA.disabled = !valorValido;
+    btnConverterB.disabled = !valorValido;
 }
 
 // --- 4. CONFIGURAÇÃO DE EVENT LISTENERS ---
@@ -161,6 +179,9 @@ btnConverterB.addEventListener('click', () => {
     }
     converter('B');
 });
+
+// Valida a entrada em tempo real
+valorEntrada.addEventListener('input', validarEntrada);
 
 // Inicialização da página
 document.addEventListener('DOMContentLoaded', () => {
