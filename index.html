@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas e Temperatura</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <div class="conversor-container">
+        <header>
+            <h1>Conversor Universal</h1>
+        </header>
+
+        <main>
+            <section class="modo-selecao">
+                <h2>Configurações</h2>
+                <label for="modo">Escolha o modo de conversão:</label>
+                <select id="modo" aria-label="selecione o modo de conversão, temperatura ou moeda">
+                    <option value="temperatura">Temperatura (℃ ↔ ℉)</option>
+                    <option value="moeda">Moeda (R$ ↔ U$)</option>
+                </select>
+                <hr>
+            </section>
+
+            <section class="conversor-principal">
+                <div class="campo-entrada">
+                    <label for="valor-entrada" id="label-entrada">Valor em Clesius (℃):</label>
+                    <input type="number" id="valor-entrada" placeholder="0" aria-labelledby="label-entrada">
+                </div>
+
+                <div class="botoes-conversao">
+                    <button id="btn-converter-a" aria-label="Converter da primeira unidade para a segunda">℃ para ℉</button>
+                    <button id="btn-converter-b" aria-label="Converter da segunda unidade para a primeira">℉ para ℃</button>
+                </div>
+
+                <div class="resultado">
+                    <h3>Resultado da conversão:</h3>
+                    <div id="valor-resultado" class="valor">Aguardando conversão...</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="cotacao-extra" id="cotacao-info" style="display: none;">
+            <h3>Cotação de Moeda Atual</h3>
+            <p>Dólar Americano (USD) para Real (BRL):</p>
+            <div id="taxa-cambio" class="valor">Buscando...</div>
+        </footer>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+</html>

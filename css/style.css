@@ -1,0 +1,161 @@
+:root {
+    /* Paleta de Cores */
+    --cor-primaria:#594F3B;
+    --cor-secundaria: #776258;
+    --cor-acento-1: #896279;
+    --cor-acento-2: #9C7CA5;
+    --cor-fundo-claro: #ADB2D3;
+
+    /* Outras variáveis úteis */
+    --cor-texto: #FFFFFF;
+    --cor-sombra: rgba(0, 0, 0, 0.4);
+    --tamanho-borda-arredondada: 8px;
+    --padding-geral: 15px;
+    --margin-vertical: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 1. ESTILOS GERAIS */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    color: var(--cor-texto);
+    text-align: center;
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--cor-fundo-claro);
+    margin: var(--margin-vertical);
+    opacity: 0.3;
+}
+
+/* 2. CONTAINER PRINCIPAL */
+.conversor-container {
+    background-color: var(--cor-secundaria);
+    padding: 30px;
+    border-radius: var(--tamanho-borda-arredondada);
+    box-shadow: 0 8px 20px var(--cor-sombra);
+    width: 90%;
+    max-width: 480px;
+    box-sizing: border-box;
+}
+
+/* 3. CAMPOS DE ENTRADA, SELECTS E LABELS */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--cor-fundo-claro);
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: var(--padding-geral);
+    margin-bottom: var(--padding-geral);
+    border: 2px solid var(--cor-acento-1);
+    border-radius: var(--tamanho-borda-arredondada);
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--cor-acento-2);
+    box-shadow: 0 0 5px var(--cor-acento-2);
+}
+
+/* Para mudara a cor do placeholder  em navegadores que suportam */
+::placeholder {
+    color: var(--cor-fundo-claro);
+    opacity: 0.7;
+}
+
+/* 4. BOTÃO DE CONVERSÃO */
+.botoes-conversao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: var(--margin-vertical) 0;
+}
+
+.botoes-conversao button {
+    flex-grow: 1; /* Faz com que os botões ocupem o mesmo espaço */
+    padding: var(--padding-geral) 10px;
+    border: none;
+    border-radius: var(--tamanho-borda-arredondada);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--cor-texto);
+    background-color: var(--cor-acento-1);
+    transition: background-color 0.2s, transform 0.1s ease;
+}
+
+.botoes-conversao button:hover {
+    background-color: var(--cor-acento-2);
+}
+
+.botoes-conversao button:active {
+    transform: scale(0.98); /* Efeito de clique */
+}
+
+.botoes-conversao button:disabled {
+    background-color: var(--cor-secundaria);
+    cursor: not-allowed;
+}
+
+/* 5. RESULTADO COTAÇÃO */
+.resultado, .cotacao-extra {
+    margin-top: var(--margin-vertical);
+    padding: var(--padding-geral);
+    background-color: var(--cor-primaria);
+    border-radius: var(--tamanho-borda-arredondada);
+    border:  1px dashed var(--cor-fundo-claro);
+}
+
+.resultado h3, .cotacao-extra h3 {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.valor {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--cor-fundo-claro); /* Cor de destaque para o valor */
+    text-align: right;
+    margin-top: 5px;
+    word-wrap: break-word;
+}
+
+/* ANIMAÇÃO DE CARREGAMENTO */
+@keyframes piscar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading-text {
+    animation: piscar 1.5s infinite;
+}
+
