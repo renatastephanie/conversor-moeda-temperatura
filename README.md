@@ -16,7 +16,7 @@ O projeto permite ao usuário alternar entre dois modos de conversão:
 | **HTML5** | Estrutura semântica (`<main>`, `<section>`, `<header>`, `<footer>`) e acessível da página. |
 | **CSS3** | Estilização moderna utilizando **Variáveis CSS** (Custom Properties) para gerenciar o tema e a paleta de cores. |
 | **JavaScript (ES6+)** | Lógica de conversão, manipulação do DOM e comunicação assíncrona com a API. |
-| **API Externa** | **Frankfurter API** (`https://api.frankfurter.dev/`) para obter a cotação do Dólar em tempo real. |
+| **API Externa** | **FastForex API** (`https://console.fastforex.io/`) para obter a cotação do Dólar em tempo real. |
 
 ---
 
