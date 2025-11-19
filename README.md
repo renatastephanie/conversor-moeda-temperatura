@@ -34,21 +34,6 @@ O projeto utiliza uma paleta de cores coesa e com bom contraste, totalmente conf
 
 ---
 
-## 🚀 Como Executar o Projeto Localmente
-
-Siga estes passos simples para rodar o projeto em sua máquina:
-
-1.  **Clone o Repositório:**
-    ```bash
-    git clone [https://github.com/renatastephanie/conversor-moeda-temperatura](https://github.com/renatastephanie)
-    ```
-2.  **Entre na Pasta:**
-    ```bash
-    cd conversor-moeda-temperatura
-    ```
-3.  **Abra no Navegador:**
-    Abra o arquivo `index.html` diretamente no seu navegador. Você também pode usar a extensão "Live Server" no VS Code para uma visualização com recarregamento automático.
-
 ## ⚙️ Funcionalidades Chave
 
 * **Alternância de Modo:** Um seletor (`<select>`) permite trocar instantaneamente a interface e a lógica de conversão entre Temperatura e Moeda.
@@ -67,6 +52,7 @@ Este projeto foi desenvolvido por:
 [![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/renatastephanie) 
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/renata-stephanie/)
 
+---
 ## Para visualizar o projeto, clique no link abaixo:
 
 [🔗Clique Aqui](https://conversor-moeda-temperatura.vercel.app/)
